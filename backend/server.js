@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const mongoose = require("mongoose");
 const todoListRouter = require("./routes/todoList");
+const userRouter = require("./routes/user");
 
 app.use(express.json());
 
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/todolist", todoListRouter);
+app.use("/api/user", userRouter);
 
 mongoose
   .connect(process.env.MONGO_URI)
