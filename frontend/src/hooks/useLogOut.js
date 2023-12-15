@@ -1,13 +1,16 @@
 import { useAuthenticationContext } from "./useAuthenticationContex";
+import { useTodoContext } from "./useTodoContext";
 
 export const useLogout=()=>{
 
-    const {dispatch}=useAuthenticationContext();
+    const {dispatch:authDispatch}=useAuthenticationContext();
+    const{dispatch:todoDispatch}=useTodoContext();
     const logout=()=>{
 
         localStorage.removeItem('user');
 
-        dispatch({type:'LOGOUT'})
+        authDispatch({type:'LOGOUT'});
+        todoDispatch({type:'REMOVE'});
 
 
     }

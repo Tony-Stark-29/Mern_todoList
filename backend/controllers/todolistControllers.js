@@ -5,10 +5,12 @@ const createTodolist = async (req, res) => {
   const { todo_title, todo_description, todo_date } = req.body;
 
   try {
+    const user_id=req.user;
     const newList = await todolist.create({
       todo_title,
       todo_description,
       todo_date,
+      user_id
     });
     res.status(200).json(newList);
   } catch (error) {
@@ -24,8 +26,14 @@ const getTodolist = async(req,res) => {
     {
         res.status(404).json({error:"Invalid Id"})
     }
+    const user_id=req.user;
 
-    const todo=await todolist.findById(id);
+    if(!user_id)
+    {
+      res.status(401).json({error:"User Id not found"})
+    }
+
+    const todo=await todolist.find({user_id});
 
     if(!todo) res.status(404).json({error:"No Data Found"});
 
@@ -37,7 +45,8 @@ const getTodolist = async(req,res) => {
 
 const getAllTodolist = async (req, res) => {
   try {
-    const lists = await todolist.find({}).sort({ createdAr: -1 });
+    const user_id=req.user;
+    const lists = await todolist.find({user_id}).sort({ createdAr: -1 });
     res.status(200).json(lists);
   } catch (error) {
     res.status(400).json({ error: error.message });

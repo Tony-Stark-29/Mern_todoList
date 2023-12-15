@@ -12,24 +12,7 @@ code {
     monospace;
 }
 
-.container {
-  min-width: 100vw;
-  min-height: 100vh;
-  max-height: auto;
-  background: #e6dada; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #274046,
-    #e6dada
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #274046,
-    #e6dada
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-
+ 
  
 .flex_column
 {
@@ -45,3 +28,15 @@ code {
   left: 50%;
   transform: translate(-50%,-50%);
 }
+
+.form_shadow
+{
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px 1px grey;
+}
+
+.todo
+{
+  min-width: 300px;
+}
+ 

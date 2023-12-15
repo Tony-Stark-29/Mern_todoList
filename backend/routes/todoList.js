@@ -6,8 +6,11 @@ const {
   updateTodolist,
   deleteTodolist,
 } = require("../controllers/todolistControllers");
+const requireAuth=require("../middleware/requireAuth");
 
 const router = express.Router();
+
+router.use(requireAuth);
 
 router.route("/").get(getAllTodolist).post(createTodolist);
 router
