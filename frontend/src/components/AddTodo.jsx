@@ -41,7 +41,7 @@ export const AddTodo = () => {
 
   }
   return (
-    <form className="col-10 col-lg-6 form_shadow   py-5 px-3 my-5" onSubmit={handleSubmit}>
+    <form className="col-12 col-lg-6 form_shadow m-xs-5  mt-5 p-5" onSubmit={handleSubmit}>
       <h3>New Task</h3>
       <input className="form-control my-3" type="text" placeholder="Title" onChange={(e)=>setTitle(e.target.value)} />
       <input className="form-control my-3" type="text" placeholder="Description" onChange={(e)=>setDescription(e.target.value)}/>

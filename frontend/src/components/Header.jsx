@@ -30,7 +30,7 @@ export const Header = () => {
         <h3>TODO..</h3>
         {user && (
           <div className="d-flex align-items-center">
-            <div className="p-2">{user.email.split("@")[0]}</div>
+            <div className="user_name p-2">{user.email.split("@")[0]}</div>
             <button className="btn btn-outline-danger" onClick={logout}>
               Logout
             </button>

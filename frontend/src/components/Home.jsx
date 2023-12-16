@@ -5,7 +5,7 @@ import { useTodoContext } from "../hooks/useTodoContext";
 
 export const Home = () => {
   const { todolist, dispatch } = useTodoContext();
-  const { token } = JSON.parse(localStorage.getItem("user"));
+  const { token } = JSON.parse(localStorage.getItem("user"))||{token:"iabuifaui"};
   const [err,setErr]=useState(null);
   const getdata = async () => {
     const res = await fetch("https://mytodo-mernapp-10m1.onrender.com/api/todolist", {
@@ -21,16 +21,15 @@ export const Home = () => {
     }
   };
   useEffect(() => {
-
-    getdata();
+ 
   }, []);
 
   return (
-    <div className="container ">
+    <div className="container p-lg-5">
        {err && <div className="text-danger">{err}</div>}
-        <div className="row justify-content-center">
+        <div className="d-flex flex-column flex-lg-row justify-items-sm-center align-items-start">
         <AddTodo />
-        <div className=" col-xs-6 col-lg-8 d-flex flex-wrap">
+        <div className="todo_container col-12 col-lg-6 d-flex flex-sm-row flex-column flex-wrap justify-content-evenly  ">
           {todolist  &&
             todolist.map((todo) => {
               return <Todo  todo={todo} />;

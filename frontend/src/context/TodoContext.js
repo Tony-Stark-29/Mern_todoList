@@ -7,8 +7,8 @@ const todoReducer = (state, action) => {
     case "SET":
       return { todolist: action.payload };
     case "ADD":
-      return { todolist: [action.payload,...state.todolist] };
-    
+      return { todolist: [action.payload, ...state.todolist] };
+
     case "REMOVE":
       return { todoList: null };
     default:
@@ -18,7 +18,28 @@ const todoReducer = (state, action) => {
 
 export const TodoContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, {
-    todolist:null
+    todolist: [
+      {
+        todo_title: "Mern",
+        todo_description: "to learn   mern",
+        todo_date: "23/12/32",
+      },
+      {
+        todo_title: "Mern",
+        todo_description: "to learn mern",
+        todo_date: "23/12/32",
+      },
+      {
+        todo_title: "Mern",
+        todo_description: "to learn mern",
+        todo_date: "23/12/32",
+      },
+      {
+        todo_title: "Mern",
+        todo_description: "to learn mern",
+        todo_date: "23/12/32",
+      },
+    ],
   });
 
   return (
