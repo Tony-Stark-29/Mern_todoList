@@ -14,7 +14,7 @@ export const useSignUp=()=>{
         setIsLoading(true);
         setError(null);
 
-        const res=await fetch('/api/user/signup',{
+        const res=await fetch('https://mytodo-mernapp-10m1.onrender.com/api/user/signup',{
 
             method:'POST',
             headers:{'Content-Type':'application/json'},

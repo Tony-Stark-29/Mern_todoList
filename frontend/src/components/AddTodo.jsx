@@ -18,7 +18,7 @@ export const AddTodo = () => {
         const {token}=JSON.parse(localStorage.getItem('user'));
         console.log(token);
 
-        const res=await fetch('/api/todolist',{
+        const res=await fetch('https://mytodo-mernapp-10m1.onrender.com/api/todolist',{
             method:'POST',
             headers:{
                 'Authorization':'Bearer '+token,

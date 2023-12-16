@@ -8,7 +8,7 @@ export const Home = () => {
   const { token } = JSON.parse(localStorage.getItem("user"));
   const [err,setErr]=useState(null);
   const getdata = async () => {
-    const res = await fetch("/api/todolist", {
+    const res = await fetch("https://mytodo-mernapp-10m1.onrender.com/api/todolist", {
       headers: { Authorization: "Bearer " + token },
     });
 
