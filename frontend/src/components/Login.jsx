@@ -7,11 +7,11 @@ export const Login = () => {
 
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
-  const {login,error}=useLogin();
+  const {login,isLoading,error}=useLogin();
   
   const handleSubmit=async (e)=>{
 
-      e.preventDefault();
+       e.preventDefault();
 
        await login(email,password);
 
@@ -30,7 +30,7 @@ export const Login = () => {
       type="password" 
       placeholder="Password" 
       onChange={(e)=>setPassword(e.target.value)}/>
-      <button className="btn btn-success" type="submit">Login</button>
+      <button className="btn btn-success" type="submit" disabled={isLoading}>Login</button>
       {error && <div className="text-danger my-2">{error}</div> }
     </form>
   );

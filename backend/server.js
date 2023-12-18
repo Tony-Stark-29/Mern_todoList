@@ -10,12 +10,12 @@ const {corsOptions}=require("./config/corsConfig");
 
 app.use(express.json());
 
-app.use(cors(corsOptions));
+ app.use(cors(corsOptions));
 
-app.use((req, res, next) => {
-  console.log(`${req.baseUrl} ${req.method}`);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(`${req.baseUrl} ${req.method}`);
+//   next();
+// });
 
 app.use("/api/todolist", todoListRouter);
 app.use("/api/user", userRouter);

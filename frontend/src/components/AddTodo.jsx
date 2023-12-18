@@ -1,53 +1,53 @@
 import React, { useState } from "react";
-import { useTodoContext } from "../hooks/useTodoContext";
+import { useTodoData } from "../hooks/useTodoData";
 
 export const AddTodo = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [error,setError]=useState(null);
-  const {dispatch:todoDispatch}=useTodoContext();
 
+  const { addData, err: error, isLoading,setErr } = useTodoData();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit=async (e)=>
-  {
-
-        e.preventDefault();
-
-        const {token}=JSON.parse(localStorage.getItem('user'));
-        console.log(token);
-
-        const res=await fetch('https://mytodo-mernapp-10m1.onrender.com/api/todolist',{
-            method:'POST',
-            headers:{
-                'Authorization':'Bearer '+token,
-                'Content-Type':'application/json'
-                
-            },
-            body:JSON.stringify({todo_title:title,todo_description:description,todo_date:date})
-        })
-
-        if(res.ok)
-        {
-            const data=await res.json();
-            todoDispatch({type:'ADD',payload:data})
-
-        }
-        else
-        {
-                setError(res.error);
-        }
-
-  }
+    addData(title, description, date);
+    setTitle("");
+    setDescription("");
+    setDate("");
+  };
   return (
-    <form className="col-12 col-lg-6 form_shadow m-xs-5  mt-5 p-5" onSubmit={handleSubmit}>
+    <form
+      className=" col-12 col-md-8 col-ls-6 p-5 justify-content-center shadow-2"
+      onSubmit={handleSubmit}
+      onFocus={()=>{setErr(null)}}
+    >
       <h3>New Task</h3>
-      <input className="form-control my-3" type="text" placeholder="Title" onChange={(e)=>setTitle(e.target.value)} />
-      <input className="form-control my-3" type="text" placeholder="Description" onChange={(e)=>setDescription(e.target.value)}/>
-      <input className="form-control my-3" type="date" placeholder="End date" onChange={(e)=>setDate(e.target.value)} />
+      <input
+        className="form-control my-3"
+        type="text"
+        placeholder="Title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
+        className="form-control my-3"
+        type="text"
+        placeholder="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        className="form-control my-3"
+        type="date"
+        placeholder="End date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
 
-      <button className="btn btn-primary" type="submit">Add</button>
+      <button className="btn btn-primary" disabled={isLoading} type="submit">
+        Add
+      </button>
       {error && <div className="text-danger">{error}</div>}
     </form>
   );

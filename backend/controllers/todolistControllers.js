@@ -4,7 +4,14 @@ const mongoose=require("mongoose");
 const createTodolist = async (req, res) => {
   const { todo_title, todo_description, todo_date } = req.body;
 
+ 
+
   try {
+    if(todo_title ===''||todo_description===''||todo_date==='')
+    {
+      
+      throw Error("All fields required");
+    }
     const user_id=req.user;
     const newList = await todolist.create({
       todo_title,

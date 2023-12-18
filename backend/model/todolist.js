@@ -16,10 +16,15 @@ const todoListSchema = new Schema(
       type: String,
       required: true,
     },
+    todo_status:{
+      type:Boolean,
+      default:false
+    },
     user_id: {
       type: String,
       required: true,
     },
+
   },
   { timestamps: true }
 );

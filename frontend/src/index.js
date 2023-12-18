@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/js/bootstrap.js';
 import { AuthContextProvider } from "./context/AuthContext";
 import { TodoContextProvider } from "./context/TodoContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
